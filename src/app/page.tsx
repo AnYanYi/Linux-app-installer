@@ -210,7 +210,7 @@ export default function Home() {
                         <div className="header-animate">
                             <div className="flex items-start gap-4">
                                 <img
-                                    src="/Linux-app-installer/tuxmate.png"
+                                    src="/tuxmate.png"
                                     alt="TuxMate Logo"
                                     className="w-16 h-16 sm:w-[72px] sm:h-[72px] object-contain shrink-0"
                                 />
