@@ -1,0 +1,7 @@
+{
+    "name": "linux-app-installer",
+    "compatibility_date": "2025-12-29",
+    "assets": {
+        "directory": "./out"
+    }
+}

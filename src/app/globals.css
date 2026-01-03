@@ -1,0 +1,755 @@
+@import "tailwindcss";
+
+/* ===== WARM PAPER AESTHETIC THEMES ===== */
+
+:root {
+    /* Dark theme - warm charcoal with paper undertones */
+    --bg-primary: #1e1d1a;
+    --bg-secondary: #262520;
+    --bg-tertiary: #302f29;
+    --bg-hover: #3a3832;
+    --bg-focus: #454339;
+    --text-primary: #f5f3ef;
+    --text-secondary: #d8d4cc;
+    --text-muted: #a09a8e;
+    --border-primary: #3a3832;
+    --border-secondary: #454339;
+    --accent: #9a958a;
+}
+
+.light {
+    /* Light theme - warm paper/parchment */
+    --bg-primary: #f5f2ed;
+    --bg-secondary: #ebe8e2;
+    --bg-tertiary: #e0dcd4;
+    --bg-hover: #d8d4ca;
+    --bg-focus: #cec9bd;
+    --text-primary: #1a1815;
+    --text-secondary: #3a3733;
+    --text-muted: #5c5850;
+    --border-primary: #d8d4ca;
+    --border-secondary: #cec9bd;
+    --accent: #7d7970;
+}
+
+@theme inline {
+    --color-background: var(--bg-primary);
+    --color-foreground: var(--text-primary);
+    --font-sans: var(--font-geist-sans);
+    --font-mono: var(--font-geist-mono);
+}
+
+body {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-weight: 450;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 999;
+    background-image: url('/noise.png');
+    opacity: 0.04;
+    pointer-events: none;
+    mix-blend-mode: overlay;
+}
+
+/* Smooth scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--border-secondary);
+    border-radius: 3px;
+}
+
+/* Scroll margin to keep focused items visible during keyboard navigation */
+[data-nav-id] {
+    scroll-margin-block: 100px 150px;
+    /* top: 100px, bottom: 150px for shortcuts bar */
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+::selection {
+    background: rgba(128, 120, 100, 0.25);
+}
+
+/* ===== THEME SWITCH ===== */
+
+.switch {
+    position: relative;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.switch__input {
+    background-color: var(--bg-tertiary);
+}
+
+.switch__input:before {
+    background-color: var(--text-primary);
+}
+
+.switch__input {
+    position: relative;
+    border-radius: 0.75em;
+    cursor: pointer;
+    display: block;
+    width: 3em;
+    height: 1.5em;
+    transition: background-color 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+    -webkit-appearance: none;
+    appearance: none;
+    border: none;
+    outline: none;
+}
+
+.switch__input:before {
+    border-radius: 50%;
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0.125em;
+    left: 0.125em;
+    width: 1.25em;
+    height: 1.25em;
+    transition:
+        background-color 0.4s cubic-bezier(0.65, 0, 0.35, 1),
+        transform 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.switch__icon,
+.switch__icon-part {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.switch__icon {
+    background-color: var(--bg-primary);
+    border-radius: 50%;
+    overflow: hidden;
+    pointer-events: none;
+    top: 0.125em;
+    left: 0.125em;
+    width: 1.25em;
+    height: 1.25em;
+    transition: transform 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.switch__icon-part {
+    transition:
+        box-shadow 0.4s cubic-bezier(0.65, 0, 0.35, 1),
+        transform 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.switch__icon-part--1,
+.switch__icon-part--2,
+.switch__icon-part--3 {
+    border-radius: 50%;
+}
+
+.switch__icon-part--1 {
+    background-color: var(--bg-primary);
+    top: calc(50% - 0.375em);
+    left: calc(50% - 0.375em);
+    width: 0.75em;
+    height: 0.75em;
+}
+
+.switch__icon-part--2 {
+    background-color: var(--text-primary);
+    top: calc(50% - 0.4375em);
+    left: calc(50% - 0.0625em);
+    width: 0.5em;
+    height: 0.5em;
+    transform: translate(-0.1875em, 0.1875em) scale(0.2);
+}
+
+.switch__icon-part--3 {
+    box-shadow: 0 0 0 0.625em var(--text-primary) inset;
+    width: 1.25em;
+    height: 1.25em;
+    transform: scale(0.25);
+}
+
+.switch__icon-part--3~.switch__icon-part {
+    background-color: var(--text-primary);
+    border-radius: 0.0625em;
+    top: 50%;
+    left: 50%;
+    width: 0.125em;
+    height: 0.1875em;
+    transform-origin: 50% 0;
+}
+
+.switch__icon-part--4 {
+    transform: translateX(-50%) rotate(0) translateY(0.25em);
+}
+
+.switch__icon-part--5 {
+    transform: translateX(-50%) rotate(45deg) translateY(0.25em);
+}
+
+.switch__icon-part--6 {
+    transform: translateX(-50%) rotate(90deg) translateY(0.25em);
+}
+
+.switch__icon-part--7 {
+    transform: translateX(-50%) rotate(135deg) translateY(0.25em);
+}
+
+.switch__icon-part--8 {
+    transform: translateX(-50%) rotate(180deg) translateY(0.25em);
+}
+
+.switch__icon-part--9 {
+    transform: translateX(-50%) rotate(225deg) translateY(0.25em);
+}
+
+.switch__icon-part--10 {
+    transform: translateX(-50%) rotate(270deg) translateY(0.25em);
+}
+
+.switch__icon-part--11 {
+    transform: translateX(-50%) rotate(315deg) translateY(0.25em);
+}
+
+.switch__sr {
+    overflow: hidden;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+}
+
+/* Checked state (dark mode) */
+.switch__input:checked {
+    background-color: var(--bg-tertiary);
+}
+
+.switch__input:checked:before,
+.switch__input:checked~.switch__icon {
+    transform: translateX(1.5em);
+}
+
+.switch__input:checked~.switch__icon .switch__icon-part--2 {
+    transform: translate(0, 0) scale(1);
+}
+
+.switch__input:checked~.switch__icon .switch__icon-part--3 {
+    box-shadow: 0 0 0 0.25em var(--text-primary) inset;
+    transform: scale(1);
+}
+
+.switch__icon-part--4,
+.switch__icon-part--5,
+.switch__icon-part--6,
+.switch__icon-part--7,
+.switch__icon-part--8,
+.switch__icon-part--9,
+.switch__icon-part--10,
+.switch__icon-part--11 {
+    transition:
+        transform 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.switch__input:checked~.switch__icon .switch__icon-part--4 {
+    transform: translateX(-50%) rotate(0) translateY(0.625em) scale(0);
+}
+
+.switch__input:checked~.switch__icon .switch__icon-part--5 {
+    transform: translateX(-50%) rotate(45deg) translateY(0.625em) scale(0);
+}
+
+.switch__input:checked~.switch__icon .switch__icon-part--6 {
+    transform: translateX(-50%) rotate(90deg) translateY(0.625em) scale(0);
+}
+
+.switch__input:checked~.switch__icon .switch__icon-part--7 {
+    transform: translateX(-50%) rotate(135deg) translateY(0.625em) scale(0);
+}
+
+.switch__input:checked~.switch__icon .switch__icon-part--8 {
+    transform: translateX(-50%) rotate(180deg) translateY(0.625em) scale(0);
+}
+
+.switch__input:checked~.switch__icon .switch__icon-part--9 {
+    transform: translateX(-50%) rotate(225deg) translateY(0.625em) scale(0);
+}
+
+.switch__input:checked~.switch__icon .switch__icon-part--10 {
+    transform: translateX(-50%) rotate(270deg) translateY(0.625em) scale(0);
+}
+
+.switch__input:checked~.switch__icon .switch__icon-part--11 {
+    transform: translateX(-50%) rotate(315deg) translateY(0.625em) scale(0);
+}
+
+/* Set switch size */
+.switch {
+    font-size: 1.5rem;
+}
+
+/* ===== ANIMATIONS ===== */
+
+/* Checkbox pop */
+@keyframes checkPop {
+    0% {
+        transform: scale(0.8);
+    }
+
+    60% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.checkbox-pop {
+    animation: checkPop 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Checkmark entrance */
+@keyframes checkIn {
+    0% {
+        transform: scale(0) rotate(-45deg);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1) rotate(0);
+        opacity: 1;
+    }
+}
+
+.check-animate {
+    animation: checkIn 0.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* Spring chevron */
+.chevron-spring {
+    transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Stagger items */
+@keyframes staggerIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-6px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.stagger-item {
+    animation: staggerIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Tooltip fade */
+@keyframes tooltipIn {
+    0% {
+        opacity: 0;
+        transform: translateY(4px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.tooltip-animate {
+    animation: tooltipIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Dropdown entrance */
+@keyframes dropIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-8px) scale(0.95);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.dropdown-animate {
+    animation: dropIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Button press */
+.btn-press {
+    transition: transform 0.1s ease;
+}
+
+.btn-press:active {
+    transform: scale(0.95);
+}
+
+/* Focus row highlight */
+.focus-row {
+    background: var(--bg-focus);
+    transition: background 0.15s ease;
+}
+
+/* ===== ENTRANCE ANIMATION INITIAL STATES ===== */
+/* These prevent the flash of content before GSAP animates */
+
+.category-header {
+    clip-path: inset(0 100% 0 0);
+}
+
+.app-item {
+    opacity: 0;
+    transform: translateY(-20px);
+    will-change: transform, opacity;
+}
+
+.header-animate {
+    clip-path: inset(0 100% 0 0);
+}
+
+.header-controls {
+    opacity: 0;
+    transform: translateY(-10px);
+}
+
+/* ===== HOW IT WORKS POPUP ===== */
+
+@keyframes popupSlideIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-10px) scale(0.98);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.how-it-works-popup {
+    box-shadow:
+        0 4px 6px -1px rgba(0, 0, 0, 0.1),
+        0 2px 4px -2px rgba(0, 0, 0, 0.1),
+        0 20px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+.how-it-works-popup::-webkit-scrollbar {
+    width: 4px;
+}
+
+.how-it-works-popup::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.how-it-works-popup::-webkit-scrollbar-thumb {
+    background: var(--border-secondary);
+    border-radius: 2px;
+}
+
+/* ===== SLIDE-UP DRAWER ANIMATIONS ===== */
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes footerSlideUp {
+    0% {
+        opacity: 0;
+        transform: translateY(100%);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px) scale(0.98);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes modalSlideIn {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -48%) scale(0.96);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+@keyframes modalSlideOut {
+    0% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -48%) scale(0.96);
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes slideDown {
+    0% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(20px) scale(0.98);
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+/* Smooth spring-like animations for floating cards */
+@keyframes cardSlideIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+    }
+
+    60% {
+        transform: translateY(-3px) scale(1.01);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes cardSlideOut {
+    0% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(10px) scale(0.95);
+    }
+}
+
+@keyframes cardSlideInSecond {
+    0% {
+        opacity: 0;
+        transform: translateY(15px) scale(0.97);
+    }
+
+    60% {
+        transform: translateY(-2px) scale(1.005);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Slide in from right edge */
+@keyframes slideInFromRight {
+    0% {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+
+    70% {
+        transform: translateX(-5px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInFromRightSecond {
+    0% {
+        opacity: 0;
+        transform: translateX(80px);
+    }
+
+    70% {
+        transform: translateX(-3px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideOutToRight {
+    0% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+}
+
+@keyframes tooltipSlideUp {
+    0% {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===== COMMAND BAR SCROLLBAR ===== */
+
+.command-scroll {
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE/Edge */
+}
+
+.command-scroll::-webkit-scrollbar {
+    display: none;
+    /* Chrome/Safari/Opera */
+}
+
+/* ===== SEARCH POPUP ANIMATION ===== */
+
+@keyframes searchPopIn {
+    0% {
+        opacity: 0;
+        transform: translateY(10px) scale(0.95);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* ===== THEME FLASH ANIMATION ===== */
+
+@keyframes themeFlash {
+    0% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 0.15;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+body.theme-flash::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    pointer-events: none;
+    background: var(--text-primary);
+    animation: themeFlash 0.15s ease-out forwards;
+}
+
+/* ===== SKELETON LOADING ANIMATION ===== */
+
+@keyframes skeletonPulse {
+
+    0%,
+    100% {
+        opacity: 0.4;
+    }
+
+    50% {
+        opacity: 0.7;
+    }
+}
+
+.skeleton-pulse {
+    animation: skeletonPulse 1.5s ease-in-out infinite;
+    will-change: opacity;
+}
+
+/* Staggered skeleton items for wave effect */
+.skeleton-item {
+    animation: skeletonPulse 1.5s ease-in-out infinite;
+    will-change: opacity;
+}
+
+/* Force GPU acceleration for animated elements */
+.category-header,
+.app-item,
+.header-animate,
+.header-controls {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-perspective: 1000px;
+    perspective: 1000px;
+}
