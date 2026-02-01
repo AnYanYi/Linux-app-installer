@@ -11,8 +11,8 @@ interface LazyImageProps {
     fallback?: string;
 }
 
-export function LazyImage({ src, alt, className, fallback = '/placeholder.svg' }: LazyImageProps) {
-    const [imageSrc, setImageSrc] = useState<string>(fallback);
+export function LazyImage({ src, alt, className, fallback }: LazyImageProps) {
+    const [imageSrc, setImageSrc] = useState<string>('');
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(false);
     const imgRef = useRef<HTMLImageElement>(null);
@@ -48,6 +48,11 @@ export function LazyImage({ src, alt, className, fallback = '/placeholder.svg' }
 
         return () => observer.disconnect();
     }, [src]);
+
+    // Don't render anything if there's an error
+    if (error) {
+        return null;
+    }
 
     return (
         <img
