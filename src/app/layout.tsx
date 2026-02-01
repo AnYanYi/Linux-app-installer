@@ -16,6 +16,12 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://pkg.tbbbk.com"),
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 5,
+    userScalable: true,
+  },
   title: {
     default: "Linux 应用安装器 - 一键生成安装命令 | 支持 180+ 应用",
     template: "%s | Linux 应用安装器",
@@ -182,9 +188,8 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
-        {umamiId && (
-          <script defer src="https://cloud.umami.is/script.js" data-website-id={umamiId} />
-        )}
+        {/* Umami 统计 */}
+        <script defer src="https://stats.nkkk.de/script.js" data-website-id="d79264e2-d938-4a78-a91e-bd2129e7286c"></script>
         {cfBeacon && (
           <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon={`{"token": "${cfBeacon}"}`} />
         )}
