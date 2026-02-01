@@ -8,10 +8,9 @@ interface LazyImageProps {
     src: string;
     alt: string;
     className?: string;
-    fallback?: string;
 }
 
-export function LazyImage({ src, alt, className, fallback }: LazyImageProps) {
+export function LazyImage({ src, alt, className }: LazyImageProps) {
     const [imageSrc, setImageSrc] = useState<string>('');
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(false);

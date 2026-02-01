@@ -345,7 +345,7 @@ export const apps: AppData[] = [
     // More media apps
     { id: 'lmms', name: 'LMMS', description: 'Digital audio workstation for music production', category: '媒体播放', iconUrl: si('lmms', '#6EBF4F'), targets: { ubuntu: 'lmms', debian: 'lmms', arch: 'lmms', fedora: 'lmms', opensuse: 'lmms', nix: 'lmms', flatpak: 'io.lmms.LMMS' }, unavailableReason: 'Not available as Snap.' },
     { id: 'ardour', name: 'Ardour', description: 'Professional digital audio workstation', category: '媒体播放', iconUrl: si('ardour', '#C8102E'), targets: { ubuntu: 'ardour', debian: 'ardour', arch: 'ardour', fedora: 'ardour', opensuse: 'ardour', nix: 'ardour' }, unavailableReason: 'Not available via Flatpak or Snap. See ardour.org.' },
-    { id: 'mixxx', name: 'Mixxx', description: 'Free DJ mixing software', category: '媒体播放', iconUrl: si('mixcloud', '#52AAD5'), targets: { ubuntu: 'mixxx', debian: 'mixxx', arch: 'mixxx', fedora: 'mixxx', opensuse: 'mixxx', nix: 'mixxx', flatpak: 'org.mixxx.Mixxx' }, unavailableReason: 'Not available as Snap.' },
+    { id: 'mixxx', name: 'Mixxx', description: 'Free DJ mixing software', category: '媒体播放', iconUrl: mdi('disc', '#52AAD5'), targets: { ubuntu: 'mixxx', debian: 'mixxx', arch: 'mixxx', fedora: 'mixxx', opensuse: 'mixxx', nix: 'mixxx', flatpak: 'org.mixxx.Mixxx' }, unavailableReason: 'Not available as Snap.' },
     { id: 'reaper', name: 'REAPER', description: 'Professional digital audio production', category: '媒体播放', iconUrl: mdi('waveform', '#FF6B6B'), targets: { arch: 'reaper', nix: 'reaper' }, unavailableReason: 'Proprietary. Download from reaper.fm.' },
 
     // More system tools

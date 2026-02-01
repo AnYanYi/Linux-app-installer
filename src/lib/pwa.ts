@@ -48,6 +48,13 @@ export interface BeforeInstallPromptEvent extends Event {
     userChoice: Promise<{ outcome: 'accepted' | 'dismissed' }>;
 }
 
+// Extend Navigator interface for iOS standalone mode
+declare global {
+    interface Navigator {
+        standalone?: boolean;
+    }
+}
+
 let deferredPrompt: BeforeInstallPromptEvent | null = null;
 
 export function setupPWAInstallPrompt(
@@ -92,6 +99,6 @@ export function isPWAInstalled(): boolean {
     // Check if running in standalone mode
     return (
         window.matchMedia('(display-mode: standalone)').matches ||
-        (window.navigator as any).standalone === true
+        window.navigator.standalone === true
     );
 }
