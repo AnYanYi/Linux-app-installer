@@ -1,0 +1,59 @@
+// GitHub Actions 工作流配置 - 自动化测试和部署
+name: CI/CD
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    name: 测试
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: 设置 Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      
+      - name: 安装依赖
+        run: npm ci
+      
+      - name: 运行 Linter
+        run: npm run lint
+      
+      - name: 运行测试
+        run: npm test
+      
+      - name: 构建项目
+        run: npm run build
+      
+      - name: 上传构建产物
+        uses: actions/upload-artifact@v4
+        with:
+          name: build
+          path: .next/
+
+  deploy:
+    name: 部署
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: 下载构建产物
+        uses: actions/download-artifact@v4
+        with:
+          name: build
+          path: .next/
+      
+      # 这里可以添加部署到 Vercel, Netlify 等平台的步骤
+      - name: 部署提示
+        run: echo "在这里添加你的部署步骤"

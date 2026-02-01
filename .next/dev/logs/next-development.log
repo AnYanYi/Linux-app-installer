@@ -1,0 +1,15 @@
+[00:00:00.925] Server  LOG      ✓ Ready in 648ms
+[00:00:05.597] Server  LOG     [Performance] generateCommand: 0.02ms
+[00:00:08.696] Server  LOG     [Performance] generateCommand: 0.00ms
+[00:00:08.812] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:09.156] Browser LOG     [Performance] generateCommand: 0.00ms
+[00:00:09.156] Browser LOG     [Performance] generateCommand: 0.00ms
+[00:00:09.156] Browser DEBUG   [DEBUG] Loading user preferences {"source":"localStorage/URL"}
+[00:00:09.156] Browser INFO    [INFO] User preferences loaded successfully {"appsCount":0,"distro":"ubuntu"}
+[00:00:09.156] Browser DEBUG   [DEBUG] Preferences saved to localStorage {"appsCount":0,"distro":"ubuntu"}
+[00:01:22.168] Browser LOG     [Performance] generateCommand: 0.00ms
+[00:01:22.168] Browser LOG     [Performance] generateCommand: 0.00ms
+[00:01:22.168] Browser DEBUG   [DEBUG] Preferences saved to localStorage {"appsCount":1,"distro":"ubuntu"}
+[00:01:24.796] Browser LOG     [Performance] generateCommand: 0.00ms
+[00:01:24.796] Browser LOG     [Performance] generateCommand: 0.00ms
+[00:01:24.796] Browser DEBUG   [DEBUG] Preferences saved to localStorage {"appsCount":2,"distro":"ubuntu"}
